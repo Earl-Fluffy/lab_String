@@ -1,8 +1,9 @@
+const int size=5;
 
-class myString.h{
+class myString{
 	public :
 		myString();
 
 	private : 
-		char *firstChar;
+		char *content;
 };
