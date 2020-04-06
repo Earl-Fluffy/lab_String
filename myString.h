@@ -5,7 +5,7 @@ class myString{
         char* affiche();
         myString(const char* s);
 	~myString();
-        length();
+        int length();
 
 
 	private :
