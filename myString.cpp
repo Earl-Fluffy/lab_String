@@ -29,7 +29,7 @@ char* myString::affiche(){
     return content;
 };
 
-myString::length(){
+int myString::length(){
     return len;
 };
 
