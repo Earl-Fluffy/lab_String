@@ -3,9 +3,9 @@
 
 myString::myString(){
 	char temp[]="Hello World !";
-	length = sizeof(temp);
-	content = new char[length];
-	for (int i=0; i<length;++i){
+	length = sizeof(temp)-1;
+	content = new char[length+1];
+	for (int i=0; i<length+1;++i){
 		content[i]=temp[i];
 	};
 
@@ -17,9 +17,8 @@ myString::myString(const char* s){
     while (s[n]!= '\0'){
         n=n+1;
     }
-    std::cout << n << std::endl;
     content = new char[n];
-
+    length = n-1;
     for (int i=0; i<n;++i){
 		content[i]=s[i];
 	};
