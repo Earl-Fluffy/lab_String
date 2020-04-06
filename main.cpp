@@ -11,5 +11,8 @@ int main(){
     myString text("a character sequence");
 
     std::cout << "essai avec constructeur text : " << text.affiche() << std::endl;
+
+    std::cout << "taille de text : " << text.length() << std::endl;
+
 	return 0;
 };
