@@ -1,11 +1,13 @@
 #include "myString.h"
-#include <cstring>
+
 
 myString::myString(){
-	content = new char[10];
-	std::strncpy(content,"Hello World !", 15);
-	//content[0] = 'h';
-    //content[1] = 'e';
+	char temp[]="Hello World !";
+	content = new char[sizeof(temp)];
+	for (int i; sizeof(temp);++i){
+		content[i]=temp[i];
+	}
+	
 };
 
 char* myString::affiche(){
