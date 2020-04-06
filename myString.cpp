@@ -3,8 +3,9 @@
 
 myString::myString(){
 	char temp[]="Hello World !";
-	content = new char[sizeof(temp)];
-	for (int i=0; i<sizeof(temp);++i){
+	length = sizeof(temp);
+	content = new char[length];
+	for (int i=0; i<length;++i){
 		content[i]=temp[i];
 	};
 

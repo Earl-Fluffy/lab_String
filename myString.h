@@ -5,4 +5,5 @@ class myString{
 
 	private :
 		char *content;
+		int length;
 };
