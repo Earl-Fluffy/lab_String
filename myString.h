@@ -1,7 +1,8 @@
 class myString{
 	public :
 		myString();
-        char* affiche();
+        	char* affiche();
+		~myString();
 
 	private :
 		char *content;

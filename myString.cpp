@@ -14,3 +14,7 @@ myString::myString(){
 char* myString::affiche(){
     return content;
 };
+
+myString::~myString(){
+	delete []content;
+};
