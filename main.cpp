@@ -7,5 +7,9 @@ int main(){
     std::cout << "premier test : " << test.affiche() << std::endl;
 
     std::cout << "avec char : " << chaine[0] << std::endl;
+
+    myString text("a character sequence");
+
+    std::cout << "essai avec constructeur text : " << text.affiche() << std::endl;
 	return 0;
 };
