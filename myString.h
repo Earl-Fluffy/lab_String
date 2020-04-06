@@ -1,9 +1,8 @@
-const int size=5;
-
 class myString{
 	public :
 		myString();
+        char affiche();
 
-	private : 
+	private :
 		char *content;
 };
