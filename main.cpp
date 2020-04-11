@@ -15,6 +15,8 @@ int main(){
 
     std::cout << "taille de text : " << text.length() << std::endl;
 
+    std::cout << "max_size de text : " << text.max_size() << std::endl;
+
     std::cout << "capacity de text : " << text.capacity() << std::endl;
 
     std::cout << "is an empty string empty : " << empty.empty() << std::endl;
