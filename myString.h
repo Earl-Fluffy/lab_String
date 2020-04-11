@@ -8,6 +8,7 @@ class myString{
 	int capacity();
 	bool empty();
 	void reserve(int n);
+	void operator= (const char* s);
 
 
 	private :

@@ -21,5 +21,8 @@ int main(){
 
     text.reserve(30);
     std::cout << "capacity de text après reserve(30) : " << text.capacity() << std::endl;
+
+    text="a new character sequence";
+    std::cout << "Modified text string with new content " << text.affiche() << " length " << text.length() << " capacity " << text.capacity() << std::endl;
 	return 0;
 };

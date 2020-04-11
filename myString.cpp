@@ -61,3 +61,17 @@ void myString::reserve(int n){
 		content=temp;
 	}
 };
+
+void myString::operator= (const char* s){
+	delete []content;
+	int n=0;
+	while (s[n]!= '\0'){
+	    n=n+1;
+	}
+	content = new char[n+1];
+	cap = n+1;
+	len = n; 
+	for (int i=0; i<n+1;++i){ 
+		content[i]=s[i];
+	};	
+}
