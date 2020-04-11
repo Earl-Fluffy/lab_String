@@ -94,3 +94,38 @@ int myString::max_size(){
     maxsize = 100;
     return maxsize;
 };
+
+void myString::resize(size_t n, char c){
+    // comment faire pour que resize prenne juste l'argument n, et par défaut c = '\0' ??
+    // faire un cas si n = 0 ?
+    // si n = 99 alors ok, il y a la place pour le dernier caractère
+    if (n >= max_size()){
+        std::cout << "size is too large, string overflow" << std::endl;
+    }else{
+        if (n < len){
+        for (int i=0; i<n;i++){
+            content[i]=content[i];
+        }
+        for (int i=n; i<len;i++){
+            content[i]='\0';
+        }
+
+        }else{
+            if (n > len){
+                for (int i=0; i<len;i++){
+                    content[i]=content[i];}
+
+                    if (c != ' '){
+                        for (int i=len; i<n;i++){
+                            content[i]=c;}
+                        int i=n;       // pour mettre un caractère nul à la fin !!
+                        content[i]='\0';
+                        }
+                    }else{
+                        for (int i=len; i<n;i++){
+                            content[i]='\0';}
+                    }
+            }
+    len = n; // mettre à jour len
+    }
+};
