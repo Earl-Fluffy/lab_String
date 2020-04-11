@@ -11,6 +11,7 @@ class myString{
 	void operator= (const char* s);
 	myString operator+( myString added);
 
+	int max_size();
 
 	private :
 		char *content;
