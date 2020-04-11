@@ -9,11 +9,14 @@ int main(){
     std::cout << "avec char : " << chaine[0] << std::endl;
 
     myString text("a character sequence");
+    myString empty("");
 
     std::cout << "essai avec constructeur text : " << text.affiche() << std::endl;
 
     std::cout << "taille de text : " << text.length() << std::endl;
 
     std::cout << "capacity de text : " << text.capacity() << std::endl;
+
+    std::cout << "is an empty string empty : " << empty.empty() << std::endl;
 	return 0;
 };

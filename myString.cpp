@@ -41,4 +41,11 @@ myString::~myString(){
 
 int myString::capacity(){
 	return cap;
-}
+};
+
+bool myString::empty(){
+	if (content[0]=='\0'){
+		return true;
+	}
+	return false;
+};

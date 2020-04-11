@@ -6,6 +6,7 @@ class myString{
 	~myString();
         int length();
 	int capacity();
+	bool empty();
 
 
 	private :
