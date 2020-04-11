@@ -97,7 +97,6 @@ int myString::max_size(){
 
 void myString::resize(size_t n, char c){
     // comment faire pour que resize prenne juste l'argument n, et par défaut c = '\0' ??
-    // faire un cas si n = 0 ?
     // si n = 99 alors ok, il y a la place pour le dernier caractère
     if (n >= max_size()){
         std::cout << "size is too large, string overflow" << std::endl;
