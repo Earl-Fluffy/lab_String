@@ -74,4 +74,17 @@ void myString::operator= (const char* s){
 	for (int i=0; i<n+1;++i){ 
 		content[i]=s[i];
 	};	
-}
+};
+
+myString myString::operator+(myString added){
+	char *newcontent = new char[len+added.length()+1];
+	for(int i=0;i<len;++i){
+		newcontent[i]=content[i];
+	}
+	for(int i=0;i<added.length()+1; ++i){
+		newcontent[i+len]=added.affiche()[i];
+	}
+	myString result(newcontent);
+	delete []newcontent;
+	return result; 
+ }

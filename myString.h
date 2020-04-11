@@ -9,6 +9,7 @@ class myString{
 	bool empty();
 	void reserve(int n);
 	void operator= (const char* s);
+	myString operator+( myString added);
 
 
 	private :

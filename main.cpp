@@ -24,5 +24,7 @@ int main(){
 
     text="a new character sequence";
     std::cout << "Modified text string with new content " << text.affiche() << " length " << text.length() << " capacity " << text.capacity() << std::endl;
+
+    std::cout << "test de l'addition : " << (text+test).affiche() << std::endl;
 	return 0;
 };
