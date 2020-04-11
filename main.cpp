@@ -14,5 +14,6 @@ int main(){
 
     std::cout << "taille de text : " << text.length() << std::endl;
 
+    std::cout << "capacity de text : " << text.capacity() << std::endl;
 	return 0;
 };

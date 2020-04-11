@@ -2,12 +2,13 @@
 #include <iostream>
 
 myString::myString(){
-	char temp[]="Hello World !";
-	len = sizeof(temp)-1;
-	content = new char[len+1];
-	for (int i=0; i<len+1;++i){
-		content[i]=temp[i];
-	};
+    char temp[]="Hello World !";
+    len = sizeof(temp)-1;
+    cap=len+1;
+    content = new char[len+1];
+    for (int i=0; i<len+1;++i){
+    	content[i]=temp[i];
+    };
 
 };
 
@@ -17,11 +18,12 @@ myString::myString(const char* s){
     while (s[n]!= '\0'){
         n=n+1;
     }
-    content = new char[n];
+    content = new char[n+1];
+    cap = n+1;
     len = n; // longueur sans le caractère final
     for (int i=0; i<n+1;++i){ // n+1 pour avoir le caractère '\0'
-		content[i]=s[i];
-	};
+    	content[i]=s[i];
+    };
 
 };
 
@@ -36,3 +38,7 @@ int myString::length(){
 myString::~myString(){
 	delete []content;
 };
+
+int myString::capacity(){
+	return cap;
+}
