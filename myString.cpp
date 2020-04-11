@@ -70,10 +70,10 @@ void myString::operator= (const char* s){
 	}
 	content = new char[n+1];
 	cap = n+1;
-	len = n; 
-	for (int i=0; i<n+1;++i){ 
+	len = n;
+	for (int i=0; i<n+1;++i){
 		content[i]=s[i];
-	};	
+	};
 };
 
 myString myString::operator+(myString added){
@@ -86,5 +86,11 @@ myString myString::operator+(myString added){
 	}
 	myString result(newcontent);
 	delete []newcontent;
-	return result; 
+	return result;
  }
+
+int myString::max_size(){
+    int maxsize;
+    maxsize = 100;
+    return maxsize;
+};
