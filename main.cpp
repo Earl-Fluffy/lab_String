@@ -18,5 +18,8 @@ int main(){
     std::cout << "capacity de text : " << text.capacity() << std::endl;
 
     std::cout << "is an empty string empty : " << empty.empty() << std::endl;
+
+    text.reserve(30);
+    std::cout << "capacity de text après reserve(30) : " << text.capacity() << std::endl;
 	return 0;
 };

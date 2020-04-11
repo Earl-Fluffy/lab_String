@@ -7,6 +7,7 @@ class myString{
         int length();
 	int capacity();
 	bool empty();
+	void reserve(int n);
 
 
 	private :

@@ -49,3 +49,15 @@ bool myString::empty(){
 	}
 	return false;
 };
+
+void myString::reserve(int n){
+	if(n>cap){
+		char *temp = new char[n];
+		cap=n;
+		for(int i=0; i<len+1; ++i){
+			temp[i]=content[i];
+		}
+		delete []content;
+		content=temp;
+	}
+};
