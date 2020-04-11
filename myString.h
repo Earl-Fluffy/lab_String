@@ -1,3 +1,5 @@
+#include <stdlib.h> // pour size_t
+
 class myString{
 	public :
 	myString();
@@ -12,6 +14,7 @@ class myString{
 	myString operator+( myString added);
 
 	int max_size();
+	void resize(size_t n, char c);
 
 	private :
 		char *content;
