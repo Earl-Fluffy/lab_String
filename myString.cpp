@@ -2,13 +2,10 @@
 #include <iostream>
 
 myString::myString(){
-    char temp[]="Hello World !";
-    len = sizeof(temp)-1;
-    cap=len+1;
-    content = new char[len+1];
-    for (int i=0; i<len+1;++i){
-    	content[i]=temp[i];
-    };
+    len=0;
+    cap=1;
+    content=new char[cap];
+    content[0]='\0';
 
 };
 
