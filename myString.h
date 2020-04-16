@@ -16,6 +16,7 @@ class myString{
 	int max_size();
 	void resize(size_t n, char c);
 	myString& operator= (const myString& str);
+	myString operator+ (char rhs);
 
 	private :
 		char *content;
