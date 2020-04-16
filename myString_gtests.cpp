@@ -99,5 +99,11 @@ TEST(GTestTests, Stringstests) {
     EXPECT_TRUE(s7.length() == 5);
     EXPECT_TRUE(s7.capacity() == 6);
 
+    // test operator +
+    myString s9("coucou");
+    myString s10 = s9 + '!';
+    EXPECT_TRUE(s10.affiche()[0] == 'c');
+    EXPECT_TRUE(s10.affiche()[6] == '!');
+
 }
 
