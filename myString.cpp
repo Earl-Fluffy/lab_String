@@ -105,14 +105,22 @@ void myString::resize(size_t n, char c){
         // If n is smaller than the current string length,
         // the current value is shortened to its first n character,
         // removing the characters beyond the nth.
-        // content = new char[cap + n+1];
+        char *temp = new char[cap + n+1]; // temp is a temporary
+
         if (n < len){
-        for (int i=0; i<n;i++){
-            content[i]=content[i];
-        }
-        for (int i=n; i<len;i++){
-            content[i]='\0';
-        }
+            for (int i=0; i<n;i++){
+                temp[i]=content[i];
+            }
+            for (int i=n; i<len;i++){
+                temp[i]='\0';
+            }
+
+            // on met dans content le string final
+            content = new char[cap + n+1];
+            for (int i=0; i<len;i++){
+                content[i]=temp[i];
+            }
+
 
         }else{
 
@@ -121,23 +129,30 @@ void myString::resize(size_t n, char c){
         // as many characters as needed to reach a size of n.
             if (n > len){
                 for (int i=0; i<len;i++){
-                    content[i]=content[i];}
+                    temp[i]=content[i];}
                     // If c is specified, the new elements are initialized as copies of c,
                     // otherwise, they are value-initialized characters (null characters).
 
                     if (c != '\0'){
                         for (int i=len; i<n;i++){
-                            content[i]=c;}
+                            temp[i]=c;}
                         int i=n;       // we need to put a null character at the end of myString
-                        content[i]='\0';
+                        temp[i]='\0';
                         }
+                    content = new char[cap + n+1];
+                    for (int i=0; i<len;i++){
+                        content[i]=temp[i];}
                     }else{
                         for (int i=len; i<n;i++){
-                            content[i]='\0';}
+                            temp[i]='\0';}
+                        content = new char[cap + n+1];
+                        for (int i=0; i<len;i++){
+                            content[i]=temp[i];}
                     }
             }
     len = n; // update len
     cap = n+1; // update cap
+
     }
 };
 
