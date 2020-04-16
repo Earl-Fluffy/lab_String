@@ -88,5 +88,7 @@ int main(){
     std::cout << "mettre length : " << s7.length() << std::endl;
     std::cout << "mettre capacity : " << s7.capacity() << std::endl;
 
+    myString s9("coucou");
+    std::cout << "coucou+'!' : " << (s9+'!').affiche() << std::endl;
 	return 0;
 };
