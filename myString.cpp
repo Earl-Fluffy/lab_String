@@ -137,3 +137,16 @@ myString& myString::operator= (const myString& str){
     }
 };
 
+myString myString::operator+ (char rhs){
+    char *newcontent = new char[len+1];
+	for(int i=0;i<len;i++){
+		newcontent[i]=content[i];
+	}
+	newcontent[len]=rhs;
+
+	myString result(newcontent);
+	delete []newcontent;
+	return result;
+
+};
+

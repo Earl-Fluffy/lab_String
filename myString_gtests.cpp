@@ -103,5 +103,15 @@ TEST(GTestTests, Stringstests) {
     EXPECT_TRUE(s6.affiche()[0] == '\0');
     EXPECT_TRUE(s6.length() == 0);
 
+    // test operator =
+    myString s7("jb");
+    myString s8("laura");
+    EXPECT_TRUE(s7.affiche()[0] == 'j');
+    s7 = s8;
+    EXPECT_TRUE(s7.affiche()[0] == 'l');
+    EXPECT_TRUE(s7.affiche()[4] == 'a');
+    EXPECT_TRUE(s7.length() == 5);
+    EXPECT_TRUE(s7.capacity() == 6);
+
 }
 
