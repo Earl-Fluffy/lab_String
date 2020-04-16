@@ -3,18 +3,30 @@
 #include <string> // cette classe permet de comparer à notre classe myString
 #include <stdlib.h> // utile pour size_t
 
+
+
 TEST(GTestTests, Stringstests) {
     // test of default constructor
     myString test;
-    char chaine[] = "Hello World !";
+    char chaine[] = "";
     EXPECT_TRUE(test.affiche()[0] == chaine[0]);
-    EXPECT_TRUE(test.affiche()[10] == chaine[10]);
+    EXPECT_TRUE(test.length() == 0);
 
     // test of non default constructor
     myString text("a character sequence");
     char test2[] = "a character sequence";
-    EXPECT_TRUE(text.affiche()[0] == test2[0]);
-    EXPECT_TRUE(text.affiche()[12] == test2[12]);
+    bool check=true;
+    if (text.length()!= 20){
+	check=false;
+    } else {
+	for (int i=0; i<20;++i){
+	  if(text.affiche()[i]!=test2[i]){
+		check=false;
+		break;
+	  }
+	}
+    }
+    EXPECT_TRUE(check);
 
     // test different methods
     EXPECT_TRUE(text.length() == 20);
@@ -28,6 +40,8 @@ TEST(GTestTests, Stringstests) {
     // test method reserve
     text.reserve(30);
     EXPECT_TRUE(text.capacity() == 30);
+    text.reserve(5);
+    EXPECT_FALSE(text.capacity() == 5);
 
     //modified text string with operator =
     text="a new character sequence";
