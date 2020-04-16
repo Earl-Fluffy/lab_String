@@ -46,7 +46,7 @@ TEST(GTestTests, Stringstests) {
     // n < len and c = ' '
     myString s1("julie");
     size_t n = 3;
-    s1.resize(n,' ');
+    s1.resize(n,'\0');
 
     EXPECT_TRUE(s1.affiche()[2] == 'l');
     EXPECT_TRUE(s1.length() == 3);
@@ -61,7 +61,7 @@ TEST(GTestTests, Stringstests) {
     // n > len and c = ' '
     myString s3("julie");
     size_t n3 = 10;
-    s3.resize(n3,' ');
+    s3.resize(n3,'\0');
     // revoir comment écrire un caractère vide :
     //EXPECT_TRUE(s3.affiche()[8] == ' ');
     EXPECT_TRUE(s3.length() == 10);
@@ -69,7 +69,7 @@ TEST(GTestTests, Stringstests) {
     // n = len and c = ' '
     myString s4("julie");
     size_t n4 = 5;
-    s4.resize(n4,' ');
+    s4.resize(n4,'\0');
     EXPECT_TRUE(s4.affiche()[4] == 'e');
     EXPECT_TRUE(s4.length() == 5);
 
