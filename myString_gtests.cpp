@@ -77,7 +77,7 @@ TEST(GTestTests, Stringstests) {
     // should have an output "size is too large, string overflow"
     // nothing is changed on the string
     myString s5("julie");
-    size_t n5 = 100;
+    size_t n5 = 101;
     s5.resize(n5,'a');
     EXPECT_TRUE(s5.affiche()[4] == 'e');
     EXPECT_TRUE(s5.length() == 5);
