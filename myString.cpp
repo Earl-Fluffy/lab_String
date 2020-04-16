@@ -29,6 +29,7 @@ char* myString::affiche(){
 };
 
 int myString::length(){
+    // Returns the length of the myString, in terms of bytes.
     return len;
 };
 
@@ -87,6 +88,7 @@ myString myString::operator+(myString added){
  }
 
 int myString::max_size(){
+    //Returns the maximum length the myString can reach
     int maxsize;
     maxsize = 100;
     return maxsize;
@@ -94,10 +96,16 @@ int myString::max_size(){
 
 void myString::resize(size_t n, char c){
     // comment faire pour que resize prenne juste l'argument n, et par défaut c = '\0' ??
-    // si n = 99 alors ok, il y a la place pour le dernier caractère
-    if (n >= max_size()){
+
+    // Resizes the string to a length of n characters.
+    // but could not exceed max_size
+    if (n > max_size()){
         std::cout << "size is too large, string overflow" << std::endl;
     }else{
+        // If n is smaller than the current string length,
+        // the current value is shortened to its first n character,
+        // removing the characters beyond the nth.
+        //content = new char[cap + n+1];
         if (n < len){
         for (int i=0; i<n;i++){
             content[i]=content[i];
@@ -107,14 +115,20 @@ void myString::resize(size_t n, char c){
         }
 
         }else{
+
+        // If n is greater than the current string length,
+        // the current content is extended by inserting at the end
+        // as many characters as needed to reach a size of n.
             if (n > len){
                 for (int i=0; i<len;i++){
                     content[i]=content[i];}
+                    // If c is specified, the new elements are initialized as copies of c,
+                    // otherwise, they are value-initialized characters (null characters).
 
                     if (c != ' '){
                         for (int i=len; i<n;i++){
                             content[i]=c;}
-                        int i=n;       // pour mettre un caractère nul à la fin !!
+                        int i=n;       // we need to put a null character at the end of myString
                         content[i]='\0';
                         }
                     }else{
@@ -122,7 +136,8 @@ void myString::resize(size_t n, char c){
                             content[i]='\0';}
                     }
             }
-    len = n; // mettre à jour len
+    len = n; // update len
+    cap = n+1; // update cap
     }
 };
 
@@ -138,6 +153,8 @@ myString& myString::operator= (const myString& str){
 };
 
 myString myString::operator+ (char rhs){
+    // Returns a newly constructed string object with its value being the concatenation
+    // of the characters in current object myString followed by those of rhs.
     char *newcontent = new char[len+1];
 	for(int i=0;i<len;i++){
 		newcontent[i]=content[i];
