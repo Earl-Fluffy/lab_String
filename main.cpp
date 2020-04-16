@@ -80,5 +80,13 @@ int main(){
     std::cout << "affiche s6 apres : " << s6.affiche() << std::endl;
     std::cout << "taille de s6 apres : " << s6.length() << std::endl;
 
+    myString s7("jb");
+    myString s8("laura");
+    std::cout << "affiche s7 avant opérateur = : " << s7.affiche() << std::endl;
+    s7 = s8;
+    std::cout << "affiche s7 après opérateur = : " << s7.affiche() << std::endl;
+    std::cout << "mettre length : " << s7.length() << std::endl;
+    std::cout << "mettre capacity : " << s7.capacity() << std::endl;
+
 	return 0;
 };
