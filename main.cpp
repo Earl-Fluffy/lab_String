@@ -66,7 +66,7 @@ int main(){
     myString s5("julie");
     std::cout << "affiche s5 avant : " << s5.affiche() << std::endl;
     std::cout << "taille de s5 avant : " << s5.length() << std::endl;
-    size_t n5 = 100;
+    size_t n5 = 101;
     s5.resize(n5,'a');
     std::cout << "affiche s5 apres : " << s5.affiche() << std::endl;
     std::cout << "taille de s5 apres : " << s5.length() << std::endl;
