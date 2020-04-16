@@ -1,14 +1,14 @@
 #include "gtest/gtest.h"
 #include "myString.cpp"
 #include <string> // cette classe permet de comparer à notre classe myString
-#include <stdlib.h> // utile pour size_t
+#include <stdlib.h> // used for size_t
 
 TEST(GTestTests, Stringstests) {
     // test of default constructor
     myString test;
-    char chaine[] = "Hello World !";
-    EXPECT_TRUE(test.affiche()[0] == chaine[0]);
-    EXPECT_TRUE(test.affiche()[10] == chaine[10]);
+    EXPECT_TRUE(test.affiche()[0] == '\0');
+    EXPECT_TRUE(test.length() == 0);
+    EXPECT_TRUE(test.capacity() == 1);
 
     // test of non default constructor
     myString text("a character sequence");
