@@ -105,7 +105,7 @@ void myString::resize(size_t n, char c){
         // If n is smaller than the current string length,
         // the current value is shortened to its first n character,
         // removing the characters beyond the nth.
-        //content = new char[cap + n+1];
+        // content = new char[cap + n+1];
         if (n < len){
         for (int i=0; i<n;i++){
             content[i]=content[i];
@@ -125,7 +125,7 @@ void myString::resize(size_t n, char c){
                     // If c is specified, the new elements are initialized as copies of c,
                     // otherwise, they are value-initialized characters (null characters).
 
-                    if (c != ' '){
+                    if (c != '\0'){
                         for (int i=len; i<n;i++){
                             content[i]=c;}
                         int i=n;       // we need to put a null character at the end of myString
