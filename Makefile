@@ -1,5 +1,5 @@
 run: myString_gtests.o 
-	g++ -o run myString_gtests.o googletest-release-1.10.0/build/lib/libgtest.a googletest-release-1.10.0/build/lib/libgtest_main.a
+	g++ -o run myString_gtests.o googletest-release-1.10.0/build/lib/libgtest.a googletest-release-1.10.0/build/lib/libgtest_main.a -pthread
 
 
 myString_gtests.o : myString_gtests.cpp
