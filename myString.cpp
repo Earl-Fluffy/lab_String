@@ -125,3 +125,15 @@ void myString::resize(size_t n, char c){
     len = n; // mettre à jour len
     }
 };
+
+myString& myString::operator= (const myString& str){
+    // Assigns a new value to the string, replacing its current contents
+    delete []content;
+    content = new char[str.cap]; // on réserve un tableau de taille str.cap
+    len = str.len;
+    cap = str.cap;
+    for(int i=0;i<str.len+1;++i){
+        content[i] = str.content[i];
+    }
+};
+
