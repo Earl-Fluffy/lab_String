@@ -100,7 +100,7 @@ void myString::resize(size_t n, char c){
     // Resizes the string to a length of n characters.
     // but could not exceed max_size
     if (n > max_size()){
-        std::cout << "size is too large, string overflow" << std::endl;
+        return ;
     }else{
         // If n is smaller than the current string length,
         // the current value is shortened to its first n character,
@@ -127,7 +127,7 @@ void myString::resize(size_t n, char c){
         // If n is greater than the current string length,
         // the current content is extended by inserting at the end
         // as many characters as needed to reach a size of n.
-            if (n > len){
+            if (n >= len){
                 for (int i=0; i<len;i++){
                     temp[i]=content[i];}
                     // If c is specified, the new elements are initialized as copies of c,
