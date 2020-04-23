@@ -117,5 +117,7 @@ TEST(GTestTests, Stringstests) {
     EXPECT_TRUE(s10.affiche()[0] == 'c');
     EXPECT_TRUE(s10.affiche()[6] == '!');
 
-}
+};
+
+
 
