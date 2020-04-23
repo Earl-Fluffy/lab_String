@@ -105,7 +105,7 @@ void myString::resize(size_t n, char c){
         // If n is smaller than the current string length,
         // the current value is shortened to its first n character,
         // removing the characters beyond the nth.
-        char *temp = new char[cap + n+1]; // temp is a temporary
+        char *temp = new char[n+1]; // temp is a temporary
 
         if (n < len){
             for (int i=0; i<n;i++){
@@ -116,7 +116,7 @@ void myString::resize(size_t n, char c){
             }
 
             // on met dans content le string final
-            content = new char[cap + n+1];
+            content = new char[n+1];
             for (int i=0; i<len;i++){
                 content[i]=temp[i];
             }
@@ -139,13 +139,13 @@ void myString::resize(size_t n, char c){
                         int i=n;       // we need to put a null character at the end of myString
                         temp[i]='\0';
                         }
-                    content = new char[cap + n+1];
+                    content = new char[n+1];
                     for (int i=0; i<n;i++){
                         content[i]=temp[i];}
                     }else{
                         for (int i=len; i<n;i++){
                             temp[i]='\0';}
-                        content = new char[cap + n+1];
+                        content = new char[n+1];
                         for (int i=0; i<n;i++){
                             content[i]=temp[i];}
                     }
