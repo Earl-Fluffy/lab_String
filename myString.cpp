@@ -24,11 +24,11 @@ myString::myString(const char* s){
 
 };
 
-char* myString::affiche(){
+const char* myString::c_str() const{
     return content;
 };
 
-int myString::length(){
+size_t myString::length(){
     // Returns the length of the myString, in terms of bytes.
     return len;
 };
@@ -37,7 +37,7 @@ myString::~myString(){
 	delete []content;
 };
 
-int myString::capacity(){
+size_t myString::capacity(){
 	return cap;
 };
 
@@ -48,7 +48,7 @@ bool myString::empty(){
 	return false;
 };
 
-void myString::reserve(int n){
+void myString::reserve(size_t n){
 	if(n>cap){
 		char *temp = new char[n];
 		cap=n;
@@ -80,16 +80,16 @@ myString myString::operator+(myString added){
 		newcontent[i]=content[i];
 	}
 	for(int i=0;i<added.length()+1; ++i){
-		newcontent[i+len]=added.affiche()[i];
+		newcontent[i+len]=added.c_str()[i];
 	}
 	myString result(newcontent);
 	delete []newcontent;
 	return result;
  }
 
-int myString::max_size(){
+size_t myString::max_size(){
     //Returns the maximum length the myString can reach
-    int maxsize;
+    size_t maxsize;
     maxsize = 100;
     return maxsize;
 };
