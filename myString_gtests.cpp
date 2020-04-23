@@ -1,16 +1,14 @@
 #include "gtest/gtest.h"
 #include "myString.cpp"
 #include <string> // cette classe permet de comparer à notre classe myString
-#include <stdlib.h> // utile pour size_t
-
-
+#include <stdlib.h> // used for size_t
 
 TEST(GTestTests, Stringstests) {
     // test of default constructor
     myString test;
-    char chaine[] = "";
-    EXPECT_TRUE(test.affiche()[0] == chaine[0]);
+    EXPECT_TRUE(test.affiche()[0] == '\0');
     EXPECT_TRUE(test.length() == 0);
+    EXPECT_TRUE(test.capacity() == 1);
 
     // test of non default constructor
     myString text("a character sequence");
@@ -75,7 +73,7 @@ TEST(GTestTests, Stringstests) {
     // n > len and c = ' '
     myString s3("julie");
     size_t n3 = 10;
-    s3.resize(n3,' ');
+    s3.resize(n3,'\0');
     // revoir comment écrire un caractère vide :
     //EXPECT_TRUE(s3.affiche()[8] == ' ');
     EXPECT_TRUE(s3.length() == 10);
@@ -83,7 +81,7 @@ TEST(GTestTests, Stringstests) {
     // n = len and c = ' '
     myString s4("julie");
     size_t n4 = 5;
-    s4.resize(n4,' ');
+    s4.resize(n4,'\0');
     EXPECT_TRUE(s4.affiche()[4] == 'e');
     EXPECT_TRUE(s4.length() == 5);
 
@@ -91,7 +89,7 @@ TEST(GTestTests, Stringstests) {
     // should have an output "size is too large, string overflow"
     // nothing is changed on the string
     myString s5("julie");
-    size_t n5 = 100;
+    size_t n5 = 101;
     s5.resize(n5,'a');
     EXPECT_TRUE(s5.affiche()[4] == 'e');
     EXPECT_TRUE(s5.length() == 5);
@@ -112,6 +110,12 @@ TEST(GTestTests, Stringstests) {
     EXPECT_TRUE(s7.affiche()[4] == 'a');
     EXPECT_TRUE(s7.length() == 5);
     EXPECT_TRUE(s7.capacity() == 6);
+
+    // test operator +
+    myString s9("coucou");
+    myString s10 = s9 + '!';
+    EXPECT_TRUE(s10.affiche()[0] == 'c');
+    EXPECT_TRUE(s10.affiche()[6] == '!');
 
 }
 
