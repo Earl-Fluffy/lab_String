@@ -6,7 +6,7 @@
 TEST(GTestTests, Stringstests) {
     // test of default constructor
     myString test;
-    EXPECT_TRUE(test.affiche()[0] == '\0');
+    EXPECT_TRUE(test.c_str()[0] == '\0');
     EXPECT_TRUE(test.length() == 0);
     EXPECT_TRUE(test.capacity() == 1);
 
@@ -18,7 +18,7 @@ TEST(GTestTests, Stringstests) {
 	check=false;
     } else {
 	for (int i=0; i<20;++i){
-	  if(text.affiche()[i]!=test2[i]){
+	  if(text.c_str()[i]!=test2[i]){
 		check=false;
 		break;
 	  }
@@ -44,15 +44,15 @@ TEST(GTestTests, Stringstests) {
     //modified text string with operator =
     text="a new character sequence";
     char test3[] = "a new character sequence";
-    EXPECT_TRUE(text.affiche()[0] == test3[0]);
-    EXPECT_TRUE(text.affiche()[22] == test3[22]);
+    EXPECT_TRUE(text.c_str()[0] == test3[0]);
+    EXPECT_TRUE(text.c_str()[22] == test3[22]);
 
     EXPECT_TRUE(text.length() == 24);
     EXPECT_TRUE(text.max_size() == 100);
     EXPECT_TRUE(text.capacity() == 25);
 
 
-    //std::cout << "test de l'addition : " << (text+test).affiche() << std::endl;
+    //std::cout << "test de l'addition : " << (text+test).c_str() << std::endl;
 
     // test of method resize
     // n < len and c = ' '
@@ -60,14 +60,14 @@ TEST(GTestTests, Stringstests) {
     size_t n = 3;
     s1.resize(n,' ');
 
-    EXPECT_TRUE(s1.affiche()[2] == 'l');
+    EXPECT_TRUE(s1.c_str()[2] == 'l');
     EXPECT_TRUE(s1.length() == 3);
 
     // n > len and c = 'a'
     myString s2("julie");
     size_t n2 = 10;
     s2.resize(n2,'a');
-    EXPECT_TRUE(s2.affiche()[9] == 'a');
+    EXPECT_TRUE(s2.c_str()[9] == 'a');
     EXPECT_TRUE(s2.length() == 10);
 
     // n > len and c = ' '
@@ -75,14 +75,14 @@ TEST(GTestTests, Stringstests) {
     size_t n3 = 10;
     s3.resize(n3,'\0');
     // revoir comment écrire un caractère vide :
-    //EXPECT_TRUE(s3.affiche()[8] == ' ');
+    //EXPECT_TRUE(s3.c_str()[8] == ' ');
     EXPECT_TRUE(s3.length() == 10);
 
     // n = len and c = ' '
     myString s4("julie");
     size_t n4 = 5;
     s4.resize(n4,'\0');
-    EXPECT_TRUE(s4.affiche()[4] == 'e');
+    EXPECT_TRUE(s4.c_str()[4] == 'e');
     EXPECT_TRUE(s4.length() == 5);
 
     // n > max_size
@@ -91,31 +91,31 @@ TEST(GTestTests, Stringstests) {
     myString s5("julie");
     size_t n5 = 101;
     s5.resize(n5,'a');
-    EXPECT_TRUE(s5.affiche()[4] == 'e');
+    EXPECT_TRUE(s5.c_str()[4] == 'e');
     EXPECT_TRUE(s5.length() == 5);
 
     // n = 0
     myString s6("julie");
     size_t n6 = 0;
     s6.resize(n6,'a');
-    EXPECT_TRUE(s6.affiche()[0] == '\0');
+    EXPECT_TRUE(s6.c_str()[0] == '\0');
     EXPECT_TRUE(s6.length() == 0);
 
     // test operator =
     myString s7("jb");
     myString s8("laura");
-    EXPECT_TRUE(s7.affiche()[0] == 'j');
+    EXPECT_TRUE(s7.c_str()[0] == 'j');
     s7 = s8;
-    EXPECT_TRUE(s7.affiche()[0] == 'l');
-    EXPECT_TRUE(s7.affiche()[4] == 'a');
+    EXPECT_TRUE(s7.c_str()[0] == 'l');
+    EXPECT_TRUE(s7.c_str()[4] == 'a');
     EXPECT_TRUE(s7.length() == 5);
     EXPECT_TRUE(s7.capacity() == 6);
 
     // test operator +
     myString s9("coucou");
     myString s10 = s9 + '!';
-    EXPECT_TRUE(s10.affiche()[0] == 'c');
-    EXPECT_TRUE(s10.affiche()[6] == '!');
+    EXPECT_TRUE(s10.c_str()[0] == 'c');
+    EXPECT_TRUE(s10.c_str()[6] == '!');
 
 }
 
