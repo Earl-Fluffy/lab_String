@@ -68,30 +68,34 @@ TEST(GTestTests, lengthTest) {
 
 };
 
+// gtest of method resize
 TEST(GTestTests, resizeTest) {
-    // test of method resize
     // n < len and c = ' '
     myString s1("julie");
     size_t n = 3;
     s1.resize(n,' ');
-
-    EXPECT_TRUE(s1.c_str()[2] == 'l');
+    EXPECT_STREQ(s1.c_str(), "jul");
+    EXPECT_TRUE(s1.c_str()[3] == '\0');
     EXPECT_TRUE(s1.length() == 3);
+    EXPECT_TRUE(s1.capacity() == 4);
 
     // n > len and c = 'a'
     myString s2("julie");
     size_t n2 = 10;
     s2.resize(n2,'a');
-    EXPECT_TRUE(s2.c_str()[9] == 'a');
+    EXPECT_STREQ(s2.c_str(), "julieaaaaa");
     EXPECT_TRUE(s2.length() == 10);
+    EXPECT_TRUE(s2.capacity() == 11);
 
-    // n > len and c = ' '
+    // n > len and c = '\0'
     myString s3("julie");
     size_t n3 = 10;
     s3.resize(n3,'\0');
-    // revoir comment écrire un caractère vide :
-    //EXPECT_TRUE(s3.c_str()[8] == ' ');
+    EXPECT_STREQ(s3.c_str(), "julie");
+    EXPECT_TRUE(s3.c_str()[5] == '\0');
+    EXPECT_TRUE(s3.c_str()[8] == '\0');
     EXPECT_TRUE(s3.length() == 10);
+    EXPECT_TRUE(s3.capacity() == 11);
 
     // n = len and c = ' '
     myString s4("julie");
@@ -120,10 +124,9 @@ TEST(GTestTests, resizeTest) {
 
 TEST(GTestTests, operatorplusTest) {
     // test operator +
-    myString s9("coucou");
-    myString s10 = s9 + '!';
-    EXPECT_TRUE(s10.c_str()[0] == 'c');
-    EXPECT_TRUE(s10.c_str()[6] == '!');
+    myString s1("coucou");
+    myString s2 = s1 + '!';
+    EXPECT_STREQ(s2.c_str(), "coucou!");
 };
 
 TEST(GTestTests, operatorequalTest) {
