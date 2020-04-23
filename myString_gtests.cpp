@@ -10,22 +10,7 @@ TEST(GTestTests, Stringstests) {
     EXPECT_TRUE(test.length() == 0);
     EXPECT_TRUE(test.capacity() == 1);
 
-    // test of non default constructor
     myString text("a character sequence");
-    char test2[] = "a character sequence";
-    bool check=true;
-    if (text.length()!= 20){
-	check=false;
-    } else {
-	for (int i=0; i<20;++i){
-	  if(text.c_str()[i]!=test2[i]){
-		check=false;
-		break;
-	  }
-	}
-    }
-    EXPECT_TRUE(check);
-
     // test different methods
     EXPECT_TRUE(text.length() == 20);
     EXPECT_TRUE(text.max_size() == 100);
@@ -54,6 +39,38 @@ TEST(GTestTests, Stringstests) {
 
     //std::cout << "test de l'addition : " << (text+test).c_str() << std::endl;
 
+    // test operator =
+    myString s7("jb");
+    myString s8("laura");
+    EXPECT_TRUE(s7.c_str()[0] == 'j');
+    s7 = s8;
+    EXPECT_TRUE(s7.c_str()[0] == 'l');
+    EXPECT_TRUE(s7.c_str()[4] == 'a');
+    EXPECT_TRUE(s7.length() == 5);
+    EXPECT_TRUE(s7.capacity() == 6);
+
+};
+
+
+TEST(GTestTests, cstringconstructorTest) {
+    // test of non default constructor
+    myString text("a character sequence");
+    char test2[] = "a character sequence";
+    bool check=true;
+    if (text.length()!= 20){
+	check=false;
+    } else {
+	for (int i=0; i<20;++i){
+	  if(text.c_str()[i]!=test2[i]){
+		check=false;
+		break;
+	  }
+	}
+    }
+    EXPECT_TRUE(check);
+};
+
+TEST(GTestTests, resizeTest) {
     // test of method resize
     // n < len and c = ' '
     myString s1("julie");
@@ -101,23 +118,12 @@ TEST(GTestTests, Stringstests) {
     EXPECT_TRUE(s6.c_str()[0] == '\0');
     EXPECT_TRUE(s6.length() == 0);
 
-    // test operator =
-    myString s7("jb");
-    myString s8("laura");
-    EXPECT_TRUE(s7.c_str()[0] == 'j');
-    s7 = s8;
-    EXPECT_TRUE(s7.c_str()[0] == 'l');
-    EXPECT_TRUE(s7.c_str()[4] == 'a');
-    EXPECT_TRUE(s7.length() == 5);
-    EXPECT_TRUE(s7.capacity() == 6);
+};
 
+TEST(GTestTests, operatorplusTest) {
     // test operator +
     myString s9("coucou");
     myString s10 = s9 + '!';
     EXPECT_TRUE(s10.c_str()[0] == 'c');
     EXPECT_TRUE(s10.c_str()[6] == '!');
-
 };
-
-
-
