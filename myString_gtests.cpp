@@ -1,65 +1,53 @@
 #include "gtest/gtest.h"
 #include "myString.cpp"
-#include <string> // cette classe permet de comparer à notre classe myString
 #include <stdlib.h> // used for size_t
 
-TEST(GTestTests, Stringstests) {
-    // test of default constructor
+// A REVOIR : on teste des méthodes aussi donc je ne sais pas si on peut tester le constructeur comme ça
+// g-test of default constructor
+TEST(GTestTests, defaultconstructorTest) {
     myString test;
     EXPECT_TRUE(test.c_str()[0] == '\0');
     EXPECT_TRUE(test.length() == 0);
     EXPECT_TRUE(test.capacity() == 1);
+};
 
+// g-test of c-string constructor
+TEST(GTestTests, cstringconstructorTest) {
     myString text("a character sequence");
-    // test different methods
-    EXPECT_TRUE(text.max_size() == 100);
-    EXPECT_TRUE(text.capacity() == 21);
+    EXPECT_STREQ(text.c_str(), "a character sequence");
+};
 
-    // empty string
+
+TEST(GTestTests, emptystringTest) {
     myString empty("");
     EXPECT_TRUE(empty.empty() == 1);
+};
 
-    // test method reserve
+// g-test method reserve
+TEST(GTestTests, reserveTest) {
+    myString text("a character sequence");
     text.reserve(30);
     EXPECT_TRUE(text.capacity() == 30);
     text.reserve(5);
     EXPECT_FALSE(text.capacity() == 5);
+};
 
+
+TEST(GTestTests, operatorequalaffectTest) {
     //modified text string with operator =
+    myString text("a character sequence");
     text="a new character sequence";
-    char test3[] = "a new character sequence";
-    EXPECT_TRUE(text.c_str()[0] == test3[0]);
-    EXPECT_TRUE(text.c_str()[22] == test3[22]);
-
+    EXPECT_STREQ(text.c_str(), "a new character sequence");
     EXPECT_TRUE(text.length() == 24);
-    EXPECT_TRUE(text.max_size() == 100);
     EXPECT_TRUE(text.capacity() == 25);
 
+};
 
+// A COMPLETER
+TEST(GTestTests, operatorplusaddedTest) {
     //std::cout << "test de l'addition : " << (text+test).c_str() << std::endl;
-
 };
 
-
-TEST(GTestTests, cstringconstructorTest) {
-    // test of c-string constructor
-    myString text("a character sequence");
-    char test2[] = "a character sequence";
-    bool check=true;
-    if (text.length()!= 20){
-	check=false;
-    } else {
-	for (int i=0; i<20;++i){
-	  if(text.c_str()[i]!=test2[i]){
-		check=false;
-		break;
-	  }
-	}
-    }
-    EXPECT_TRUE(check);
-    // on peut aussi faire :
-    EXPECT_STREQ(text.c_str(), "a character sequence");
-};
 
 TEST(GTestTests, lengthTest) {
     myString test;
@@ -136,12 +124,14 @@ TEST(GTestTests, resizeTest) {
 
 };
 
+
 TEST(GTestTests, operatorplusTest) {
     // test operator +
     myString s1("coucou");
     myString s2 = s1 + '!';
     EXPECT_STREQ(s2.c_str(), "coucou!");
 };
+
 
 TEST(GTestTests, operatorequalTest) {
     // right string longer than left string
