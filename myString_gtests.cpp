@@ -57,6 +57,8 @@ TEST(GTestTests, cstringconstructorTest) {
 	}
     }
     EXPECT_TRUE(check);
+    // on peut aussi faire :
+    EXPECT_STREQ(text.c_str(), "a character sequence");
 };
 
 TEST(GTestTests, lengthTest) {
@@ -67,6 +69,16 @@ TEST(GTestTests, lengthTest) {
     EXPECT_TRUE(text.length() == 20);
 
 };
+
+
+TEST(GTestTests, maxsizeTest) {
+    myString test;
+    EXPECT_TRUE(test.max_size() == 100);
+    myString text("a character sequence");
+    EXPECT_TRUE(text.max_size() == 100);
+
+};
+
 
 // gtest of method resize
 TEST(GTestTests, resizeTest) {
@@ -97,21 +109,22 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s3.length() == 10);
     EXPECT_TRUE(s3.capacity() == 11);
 
-    // n = len and c = ' '
+    // n = len and c = '\0'
     myString s4("julie");
     size_t n4 = 5;
     s4.resize(n4,'\0');
-    EXPECT_TRUE(s4.c_str()[4] == 'e');
+    EXPECT_STREQ(s4.c_str(), "julie");
     EXPECT_TRUE(s4.length() == 5);
+    EXPECT_TRUE(s4.capacity() == 6);
 
     // n > max_size
-    // should have an output "size is too large, string overflow"
     // nothing is changed on the string
     myString s5("julie");
     size_t n5 = 101;
     s5.resize(n5,'a');
-    EXPECT_TRUE(s5.c_str()[4] == 'e');
+    EXPECT_STREQ(s5.c_str(), "julie");
     EXPECT_TRUE(s5.length() == 5);
+    EXPECT_TRUE(s5.capacity() == 6);
 
     // n = 0
     myString s6("julie");
@@ -119,6 +132,7 @@ TEST(GTestTests, resizeTest) {
     s6.resize(n6,'a');
     EXPECT_TRUE(s6.c_str()[0] == '\0');
     EXPECT_TRUE(s6.length() == 0);
+    EXPECT_TRUE(s6.capacity() == 1);
 
 };
 
