@@ -140,13 +140,13 @@ void myString::resize(size_t n, char c){
                         temp[i]='\0';
                         }
                     content = new char[cap + n+1];
-                    for (int i=0; i<len;i++){
+                    for (int i=0; i<n;i++){
                         content[i]=temp[i];}
                     }else{
                         for (int i=len; i<n;i++){
                             temp[i]='\0';}
                         content = new char[cap + n+1];
-                        for (int i=0; i<len;i++){
+                        for (int i=0; i<n;i++){
                             content[i]=temp[i];}
                     }
             }
