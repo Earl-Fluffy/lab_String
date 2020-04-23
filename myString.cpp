@@ -28,11 +28,6 @@ const char* myString::c_str() const{
     return content;
 };
 
-size_t myString::length(){
-    // Returns the length of the myString, in terms of bytes.
-    return len;
-};
-
 myString::~myString(){
 	delete []content;
 };
@@ -87,6 +82,11 @@ myString myString::operator+(myString added){
 	return result;
  }
 
+ size_t myString::length(){
+    // Returns the length of the myString, in terms of bytes.
+    return len;
+};
+
 size_t myString::max_size(){
     //Returns the maximum length the myString can reach
     size_t maxsize;
@@ -95,8 +95,6 @@ size_t myString::max_size(){
 };
 
 void myString::resize(size_t n, char c){
-    // comment faire pour que resize prenne juste l'argument n, et par défaut c = '\0' ??
-
     // Resizes the string to a length of n characters.
     // but could not exceed max_size
     if (n > max_size()){
@@ -105,22 +103,21 @@ void myString::resize(size_t n, char c){
         // If n is smaller than the current string length,
         // the current value is shortened to its first n character,
         // removing the characters beyond the nth.
-        char *temp = new char[n+1]; // temp is a temporary
-
+        char *temp = new char[n+1]; // allocate memory for temp
+        // n+1 because we want the n characters of the string and 1 null character at the end
         if (n < len){
-            for (int i=0; i<n;i++){
+            for (int i=0; i<n;i++){ // temps takes the first n characters of the string
                 temp[i]=content[i];
             }
-            for (int i=n; i<len;i++){
-                temp[i]='\0';
-            }
 
-            // on met dans content le string final
+            int i=n; // and at the end of temp we add the null character
+            temp[i]='\0';
+
+            // content contains the final string, the resize string
             content = new char[n+1];
-            for (int i=0; i<len;i++){
+            for (int i=0; i<len+1;i++){ // len + 1 because we want the last character, the null character to be in final string
                 content[i]=temp[i];
             }
-
 
         }else{
 
@@ -128,25 +125,30 @@ void myString::resize(size_t n, char c){
         // the current content is extended by inserting at the end
         // as many characters as needed to reach a size of n.
             if (n >= len){
+
                 for (int i=0; i<len;i++){
                     temp[i]=content[i];}
+                // temp contains now all the characters of the initial string
+
                     // If c is specified, the new elements are initialized as copies of c,
                     // otherwise, they are value-initialized characters (null characters).
 
                     if (c != '\0'){
                         for (int i=len; i<n;i++){
                             temp[i]=c;}
-                        int i=n;       // we need to put a null character at the end of myString
+                        // temp contains now all the characters of the initial string AND the character c as many times as necessary so that final string has length=n
+                        int i=n;       // null character is added at the end of the final string
                         temp[i]='\0';
                         }
-                    content = new char[n+1];
-                    for (int i=0; i<n;i++){
+
+                    content = new char[n+1]; // content will contain the final string
+                    for (int i=0; i<n+1;i++){ // n+1 so null character is also in content
                         content[i]=temp[i];}
                     }else{
-                        for (int i=len; i<n;i++){
+                        for (int i=len; i<n+1;i++){ // n+1 so there are (len-n) null characters to rich string's length=n, and +1 for the final null character
                             temp[i]='\0';}
                         content = new char[n+1];
-                        for (int i=0; i<n;i++){
+                        for (int i=0; i<n+1;i++){ // n+1 so null character is also in content
                             content[i]=temp[i];}
                     }
             }
