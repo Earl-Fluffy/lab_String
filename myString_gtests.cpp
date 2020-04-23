@@ -124,9 +124,8 @@ TEST(GTestTests, resizeTest) {
 
 };
 
-
+// g-test operator + which add the given char at the end of the string's array
 TEST(GTestTests, operatorplusTest) {
-    // test operator +
     myString s1("coucou");
     myString s2 = s1 + '!';
     EXPECT_STREQ(s2.c_str(), "coucou!");
