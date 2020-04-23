@@ -12,7 +12,6 @@ TEST(GTestTests, Stringstests) {
 
     myString text("a character sequence");
     // test different methods
-    EXPECT_TRUE(text.length() == 20);
     EXPECT_TRUE(text.max_size() == 100);
     EXPECT_TRUE(text.capacity() == 21);
 
@@ -39,21 +38,11 @@ TEST(GTestTests, Stringstests) {
 
     //std::cout << "test de l'addition : " << (text+test).c_str() << std::endl;
 
-    // test operator =
-    myString s7("jb");
-    myString s8("laura");
-    EXPECT_TRUE(s7.c_str()[0] == 'j');
-    s7 = s8;
-    EXPECT_TRUE(s7.c_str()[0] == 'l');
-    EXPECT_TRUE(s7.c_str()[4] == 'a');
-    EXPECT_TRUE(s7.length() == 5);
-    EXPECT_TRUE(s7.capacity() == 6);
-
 };
 
 
 TEST(GTestTests, cstringconstructorTest) {
-    // test of non default constructor
+    // test of c-string constructor
     myString text("a character sequence");
     char test2[] = "a character sequence";
     bool check=true;
@@ -68,6 +57,15 @@ TEST(GTestTests, cstringconstructorTest) {
 	}
     }
     EXPECT_TRUE(check);
+};
+
+TEST(GTestTests, lengthTest) {
+    myString test;
+    EXPECT_TRUE(test.length() == 0);
+
+    myString text("a character sequence");
+    EXPECT_TRUE(text.length() == 20);
+
 };
 
 TEST(GTestTests, resizeTest) {
@@ -126,4 +124,32 @@ TEST(GTestTests, operatorplusTest) {
     myString s10 = s9 + '!';
     EXPECT_TRUE(s10.c_str()[0] == 'c');
     EXPECT_TRUE(s10.c_str()[6] == '!');
+};
+
+TEST(GTestTests, operatorequalTest) {
+    // right string longer than left string
+    myString s1("jb");
+    myString s2("laura");
+    EXPECT_STREQ(s1.c_str(), "jb");
+    s1 = s2;
+    EXPECT_STREQ(s1.c_str(), "laura");
+    EXPECT_TRUE(s1.length() == 5);
+    EXPECT_TRUE(s1.capacity() == 6);
+
+    // left string longer than right string
+    myString s3("jb");
+    myString s4("laura");
+    EXPECT_STREQ(s3.c_str(), "jb");
+    s4 = s3;
+    EXPECT_STREQ(s4.c_str(), "jb");
+    EXPECT_TRUE(s4.length() == 2);
+    EXPECT_TRUE(s4.capacity() == 3);
+
+    // empty string
+    myString empty("");
+    myString s5("not empty");
+    empty = s5;
+    EXPECT_STREQ(empty.c_str(), "not empty");
+    s5 = empty;
+    EXPECT_STREQ(s5.c_str(), empty.c_str());
 };
