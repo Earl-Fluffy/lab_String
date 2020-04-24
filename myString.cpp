@@ -9,7 +9,7 @@ myString::myString(){
 
 };
 
-myString::myString(const char* s){
+myString::myString(const char* s){ //ATTENTION il n'y a pas de protection contre une string de + de 100 char !
     int n;
     n=0;
     while (s[n]!= '\0'){
@@ -44,9 +44,15 @@ bool myString::empty(){
 };
 
 void myString::reserve(size_t n){
-	if(n>cap){
-		char *temp = new char[n];
-		cap=n;
+	if(n>cap && cap != 101){
+		char *temp;
+		if (n<101){
+			temp = new char[n];
+			cap=n;
+		}else{
+			temp = new char[101];
+			cap=101;
+		}
 		for(int i=0; i<len+1; ++i){
 			temp[i]=content[i];
 		}
@@ -94,7 +100,7 @@ size_t myString::max_size(){
     return maxsize;
 };
 
-void myString::resize(size_t n, char c){
+void myString::resize(size_t n, char c){ //ATTENTION : manque le delete de temp
     // Resizes the string to a length of n characters.
     // but could not exceed max_size
     if (n > max_size()){

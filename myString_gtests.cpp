@@ -15,12 +15,15 @@ TEST(GTestTests, defaultconstructorTest) {
 TEST(GTestTests, cstringconstructorTest) {
     myString text("a character sequence");
     EXPECT_STREQ(text.c_str(), "a character sequence");
+    EXPECT_TRUE(text.length()==20);
 };
 
-
+// g-test of method empty
 TEST(GTestTests, emptystringTest) {
     myString empty("");
-    EXPECT_TRUE(empty.empty() == 1);
+    myString text("Something");
+    EXPECT_TRUE(empty.empty());
+    EXPECT_FALSE(text.empty());
 };
 
 // g-test method reserve
@@ -30,9 +33,11 @@ TEST(GTestTests, reserveTest) {
     EXPECT_TRUE(text.capacity() == 30);
     text.reserve(5);
     EXPECT_FALSE(text.capacity() == 5);
+    text.reserve(150);
+    EXPECT_TRUE(text.capacity() == 101);
 };
 
-
+// g-test = operator
 TEST(GTestTests, operatorequalaffectTest) {
     //modified text string with operator =
     myString text("a character sequence");
@@ -43,12 +48,16 @@ TEST(GTestTests, operatorequalaffectTest) {
 
 };
 
-// A COMPLETER
+// g-test + (myString myString) operator
 TEST(GTestTests, operatorplusaddedTest) {
-    //std::cout << "test de l'addition : " << (text+test).c_str() << std::endl;
+    myString left("abc-");
+    myString right("def");
+    myString res = left+right;
+    EXPECT_TRUE(res.length()==7);
+    EXPECT_STREQ(res.c_str(),"abc-def");
 };
 
-
+// g-test of method length
 TEST(GTestTests, lengthTest) {
     myString test;
     EXPECT_TRUE(test.length() == 0);
@@ -58,7 +67,7 @@ TEST(GTestTests, lengthTest) {
 
 };
 
-
+// g-test of method max_size
 TEST(GTestTests, maxsizeTest) {
     myString test;
     EXPECT_TRUE(test.max_size() == 100);
