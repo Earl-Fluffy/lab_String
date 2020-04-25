@@ -46,45 +46,58 @@ bool myString::empty(){
 
 void myString::reserve(size_t n){
 	if(n>cap && cap != max_size()+1){
+	//Check if the capacity asked is doable
 		char *temp;
+		//The array with the bigger capacity
 		if (n<(max_size()+1)){
 			temp = new char[n];
 			cap=n;
 		}else{
+			//If a capacity bigger than the max is asked, the max is picked
 			temp = new char[max_size()+1];
 			cap=max_size()+1;
 		}
+		//Copy of the previous array's content
 		for(int i=0; i<len+1; ++i){
 			temp[i]=content[i];
 		}
 		delete []content;
+		//Deleting the previous array
 		content=temp;
 	}
 };
 
 void myString::operator= (const char* s){
 	delete []content;
+	//Deleting the previous string
 	int n=0;
+	//Counting the length of the given string
 	while (s[n]!= '\0'){
 	    n=n+1;
 	}
+	//Creating the new array adequate size
 	content = new char[n+1];
 	cap = n+1;
 	len = n;
+	//Copying the given string in the new array
 	for (int i=0; i<n+1;++i){
 		content[i]=s[i];
 	};
 };
 
 myString myString::operator+(myString added){
+	//Creating the array used as template by the new string
 	char *newcontent = new char[len+added.length()+1];
+	//Copying the content of the first string
 	for(int i=0;i<len;++i){
 		newcontent[i]=content[i];
 	}
+	//Copying the content of the second string
 	for(int i=0;i<added.length()+1; ++i){
 		newcontent[i+len]=added.c_str()[i];
 	}
 	myString result(newcontent);
+	//Deleting the array since the new string constructor made a deep copy of it
 	delete []newcontent;
 	return result;
  }
@@ -183,14 +196,18 @@ void myString::resize2(size_t n, char c){
 	if (n>max_size()){
 		return;
 	}
+	//Case : there is no need to resize the array
 	if (n<cap){
 		for (int i=std::min(len,n);i<n;++i){
 			content[i]=c;
 		}
 		for (int i=n;i<cap;++i){
+			//Erases the end of the string (needed if it
+			//was longer than n)
 			content[i]='\0';
 		}
 	} else {
+	//Case : the array needs to be resized
 		char *temp = new char[n+1];
 		for (int i=0;i<len;++i){
 			temp[i]=content[i];
@@ -203,6 +220,8 @@ void myString::resize2(size_t n, char c){
 		cap=n+1;
 	}
 	if (c=='\0'){
+		//By definition, length is the number of char before
+		// the first '\0'
 		len=std::min(n,len);
 	}else{
 		len=n;
