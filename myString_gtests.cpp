@@ -1,6 +1,7 @@
 #include "gtest/gtest.h"
 #include "myString.cpp"
 #include <stdlib.h> // used for size_t
+#include <iostream>
 
 // A REVOIR : on teste des méthodes aussi donc je ne sais pas si on peut tester le constructeur comme ça
 // g-test of default constructor
@@ -79,14 +80,22 @@ TEST(GTestTests, maxsizeTest) {
 
 // gtest of method resize
 TEST(GTestTests, resizeTest) {
+std::cout << "test 0" << std::endl;
     // n < len and c = ' '
     myString s1("julie");
     size_t n = 3;
+
     s1.resize(n,' ');
     EXPECT_STREQ(s1.c_str(), "jul");
     EXPECT_TRUE(s1.c_str()[3] == '\0');
+
+    std::cout<<s1.length()<<std::endl;
     EXPECT_TRUE(s1.length() == 3);
+
     EXPECT_TRUE(s1.capacity() == 4);
+    //this line is not true with resize2
+
+std::cout << "test 1" << std::endl;
 
     // n > len and c = 'a'
     myString s2("julie");
@@ -96,16 +105,24 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s2.length() == 10);
     EXPECT_TRUE(s2.capacity() == 11);
 
+
+std::cout << "test 2" << std::endl;
+
     // n > len and c = '\0'
     myString s3("julie");
     size_t n3 = 10;
     s3.resize(n3,'\0');
+
     EXPECT_STREQ(s3.c_str(), "julie");
+
+
     EXPECT_TRUE(s3.c_str()[5] == '\0');
     EXPECT_TRUE(s3.c_str()[8] == '\0');
     EXPECT_TRUE(s3.length() == 10);
+    //this line is not true with resize2
     EXPECT_TRUE(s3.capacity() == 11);
 
+std::cout << "test 3" << std::endl;
     // n = len and c = '\0'
     myString s4("julie");
     size_t n4 = 5;
@@ -114,6 +131,7 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s4.length() == 5);
     EXPECT_TRUE(s4.capacity() == 6);
 
+std::cout << "test 4" << std::endl;
     // n > max_size
     // nothing is changed on the string
     myString s5("julie");
@@ -123,6 +141,7 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s5.length() == 5);
     EXPECT_TRUE(s5.capacity() == 6);
 
+std::cout << "test 5" << std::endl;
     // n = 0
     myString s6("julie");
     size_t n6 = 0;
@@ -130,7 +149,9 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s6.c_str()[0] == '\0');
     EXPECT_TRUE(s6.length() == 0);
     EXPECT_TRUE(s6.capacity() == 1);
+    //this line is not true with resize2
 
+std::cout << "test 6" << std::endl;
 };
 
 // g-test operator + which add the given char at the end of the string's array

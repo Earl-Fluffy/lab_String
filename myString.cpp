@@ -1,5 +1,6 @@
 #include "myString.h"
 #include <iostream>
+#include <algorithm>
 
 myString::myString(){
     len=0;
@@ -44,14 +45,14 @@ bool myString::empty(){
 };
 
 void myString::reserve(size_t n){
-	if(n>cap && cap != 101){
+	if(n>cap && cap != max_size()+1){
 		char *temp;
-		if (n<101){
+		if (n<(max_size()+1)){
 			temp = new char[n];
 			cap=n;
 		}else{
-			temp = new char[101];
-			cap=101;
+			temp = new char[max_size()+1];
+			cap=max_size()+1;
 		}
 		for(int i=0; i<len+1; ++i){
 			temp[i]=content[i];
@@ -100,7 +101,7 @@ size_t myString::max_size(){
     return maxsize;
 };
 
-void myString::resize(size_t n, char c){ //ATTENTION : manque le delete de temp
+void myString::resize(size_t n, char c){ 
     // Resizes the string to a length of n characters.
     // but could not exceed max_size
     if (n > max_size()){
@@ -119,18 +120,22 @@ void myString::resize(size_t n, char c){ //ATTENTION : manque le delete de temp
             int i=n; // and at the end of temp we add the null character
             temp[i]='\0';
 
-            // content contains the final string, the resize string
-            content = new char[n+1];
+            // content contains the final string, the resized string
+            
+	    /*content = new char[n+1];
             for (int i=0; i<len+1;i++){ // len + 1 because we want the last character, the null character to be in final string
                 content[i]=temp[i];
-            }
+            }*/
+	    delete []content;
+	    content=temp;
+	    len=n;
 
         }else{
 
         // If n is greater than the current string length,
         // the current content is extended by inserting at the end
         // as many characters as needed to reach a size of n.
-            if (n >= len){
+            //if (n >= len){
 
                 for (int i=0; i<len;i++){
                     temp[i]=content[i];}
@@ -141,28 +146,68 @@ void myString::resize(size_t n, char c){ //ATTENTION : manque le delete de temp
 
                     if (c != '\0'){
                         for (int i=len; i<n;i++){
-                            temp[i]=c;}
+                            temp[i]=c;
+		        }
                         // temp contains now all the characters of the initial string AND the character c as many times as necessary so that final string has length=n
                         int i=n;       // null character is added at the end of the final string
                         temp[i]='\0';
-                        }
+                        //}
 
-                    content = new char[n+1]; // content will contain the final string
+                    /*content = new char[n+1]; // content will contain the final string
                     for (int i=0; i<n+1;i++){ // n+1 so null character is also in content
-                        content[i]=temp[i];}
+                        content[i]=temp[i];}*/
+		    delete []content;
+		    content=temp;
+		    len = n; // update len
+
                     }else{
-                        for (int i=len; i<n+1;i++){ // n+1 so there are (len-n) null characters to rich string's length=n, and +1 for the final null character
+			//NOTE :: something's weird here. If the string is full of '\0', the length doesn't change... (number of char until first '\0')
+                        for (int i=len; i<n+1;i++){ // n+1 so there are (len-n) null characters to reach string's length=n, and +1 for the final null character
                             temp[i]='\0';}
-                        content = new char[n+1];
+                        /*content = new char[n+1];
                         for (int i=0; i<n+1;i++){ // n+1 so null character is also in content
-                            content[i]=temp[i];}
+                            content[i]=temp[i];}*/
+
+			
+			delete []content;
+			content=temp;
                     }
-            }
-    len = n; // update len
-    cap = n+1; // update cap
+        }
+        
+        cap = n+1; // update cap
 
     }
 };
+
+void myString::resize2(size_t n, char c){
+	if (n>max_size()){
+		return;
+	}
+	if (n<cap){
+		for (int i=std::min(len,n);i<n;++i){
+			content[i]=c;
+		}
+		for (int i=n;i<cap;++i){
+			content[i]='\0';
+		}
+	} else {
+		char *temp = new char[n+1];
+		for (int i=0;i<len;++i){
+			temp[i]=content[i];
+		}
+		delete []content;
+		for (int i=len;i<n;++i){
+			temp[i]=c;
+		}
+		content=temp;
+		cap=n+1;
+	}
+	if (c=='\0'){
+		len=std::min(n,len);
+	}else{
+		len=n;
+	}
+}
 
 myString& myString::operator= (const myString& str){
     // Assigns a new value to the string, replacing its current contents

@@ -3,8 +3,8 @@
 class myString{
 	public :
 	myString(); //default constructor
-    const char* c_str() const;//returns the string's array without allowing any modification
-    myString(const char* s);//constructor using a C style string
+        const char* c_str() const;//returns the string's array without allowing any modification
+        myString(const char* s);//constructor using a C style string
 	~myString(); //destructor
 
 	size_t capacity(); //returns cap
@@ -13,9 +13,12 @@ class myString{
 	void operator= (const char* s); //copy the content of the given C style string into the string's array
 	myString operator+( myString added); //Create a new string with the content of the 2 given strings
 
-    size_t length(); //returns len
+        size_t length(); //returns len
 	size_t max_size(); //returns the maximum length that the string can reach
-	void resize(size_t n, char c); // Resizes the string to a length of n characters. If n<len  the string is shortened to his first n characters, if n>=len add to the string the character c (n-len) times.
+	void resize(size_t n, char c='\0'); // Resizes the string to a length of n characters. If n<len  the string is shortened to his first n characters, if n>=len add to the string the character c (n-len) times.
+
+	void resize2(size_t n, char c='\0');
+
 	myString& operator= (const myString& str); //copy the given string
 	myString operator+ (char rhs); //add the given char at the end of the string's array
 
