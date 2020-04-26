@@ -115,11 +115,9 @@ std::cout << "test 2" << std::endl;
     s3.resize(n3,'\0');
 
     EXPECT_STREQ(s3.c_str(), "julie");
-
-
     EXPECT_TRUE(s3.c_str()[5] == '\0');
     EXPECT_TRUE(s3.c_str()[8] == '\0');
-    EXPECT_TRUE(s3.length() == 10);
+    EXPECT_TRUE(s3.length() == 5);
     //this line is not true with resize2
     EXPECT_TRUE(s3.capacity() == 11);
 
