@@ -136,14 +136,8 @@ void myString::resize(size_t n, char c){
             int i=n; // and at the end of temp we add the null character
             temp[i]='\0';
 
-            // content contains the final string, the resized string
-
-	    /*content = new char[n+1];
-            for (int i=0; i<len+1;i++){ // len + 1 because we want the last character, the null character to be in final string
-                content[i]=temp[i];
-            }*/
-	    delete []content;
-	    content=temp;
+        delete []content;
+	    content=temp; // content contains the final string, the resized string
 	    len=n;
 
         }else{
@@ -151,8 +145,6 @@ void myString::resize(size_t n, char c){
         // If n is greater than the current string length,
         // the current content is extended by inserting at the end
         // as many characters as needed to reach a size of n.
-            //if (n >= len){
-
                 for (unsigned int i=0; i<len;i++){
                     temp[i]=content[i];}
                 // temp contains now all the characters of the initial string
@@ -167,11 +159,7 @@ void myString::resize(size_t n, char c){
                         // temp contains now all the characters of the initial string AND the character c as many times as necessary so that final string has length=n
                         int i=n;       // null character is added at the end of the final string
                         temp[i]='\0';
-                        //}
 
-                    /*content = new char[n+1]; // content will contain the final string
-                    for (int i=0; i<n+1;i++){ // n+1 so null character is also in content
-                        content[i]=temp[i];}*/
 		    delete []content;
 		    content=temp;
 		    len = n; // update len
@@ -180,10 +168,6 @@ void myString::resize(size_t n, char c){
 			//NOTE :: something's weird here. If the string is full of '\0', the length doesn't change... (number of char until first '\0')
                         for (unsigned int i=len; i<n+1;i++){ // n+1 so there are (len-n) null characters to reach string's length=n, and +1 for the final null character
                             temp[i]='\0';}
-                        /*content = new char[n+1];
-                        for (int i=0; i<n+1;i++){ // n+1 so null character is also in content
-                            content[i]=temp[i];}*/
-
 
 			delete []content;
 			content=temp;
