@@ -58,7 +58,7 @@ void myString::reserve(size_t n){
 			cap=max_size()+1;
 		}
 		//Copy of the previous array's content
-		for(int i=0; i<len+1; ++i){
+		for(unsigned int i=0; i<len+1; ++i){
 			temp[i]=content[i];
 		}
 		delete []content;
@@ -89,11 +89,11 @@ myString myString::operator+(myString added){
 	//Creating the array used as template by the new string
 	char *newcontent = new char[len+added.length()+1];
 	//Copying the content of the first string
-	for(int i=0;i<len;++i){
+	for(unsigned int i=0;i<len;++i){
 		newcontent[i]=content[i];
 	}
 	//Copying the content of the second string
-	for(int i=0;i<added.length()+1; ++i){
+	for(unsigned int i=0;i<added.length()+1; ++i){
 		newcontent[i+len]=added.c_str()[i];
 	}
 	myString result(newcontent);
@@ -114,7 +114,7 @@ size_t myString::max_size(){
     return maxsize;
 };
 
-void myString::resize(size_t n, char c){ 
+void myString::resize(size_t n, char c){
     // Resizes the string to a length of n characters.
     // but could not exceed max_size
     if (n > max_size()){
@@ -126,7 +126,7 @@ void myString::resize(size_t n, char c){
         char *temp = new char[n+1]; // allocate memory for temp
         // n+1 because we want the n characters of the string and 1 null character at the end
         if (n < len){
-            for (int i=0; i<n;i++){ // temps takes the first n characters of the string
+            for (unsigned int i=0; i<n;i++){ // temps takes the first n characters of the string
                 temp[i]=content[i];
             }
 
@@ -134,7 +134,7 @@ void myString::resize(size_t n, char c){
             temp[i]='\0';
 
             // content contains the final string, the resized string
-            
+
 	    /*content = new char[n+1];
             for (int i=0; i<len+1;i++){ // len + 1 because we want the last character, the null character to be in final string
                 content[i]=temp[i];
@@ -150,7 +150,7 @@ void myString::resize(size_t n, char c){
         // as many characters as needed to reach a size of n.
             //if (n >= len){
 
-                for (int i=0; i<len;i++){
+                for (unsigned int i=0; i<len;i++){
                     temp[i]=content[i];}
                 // temp contains now all the characters of the initial string
 
@@ -158,7 +158,7 @@ void myString::resize(size_t n, char c){
                     // otherwise, they are value-initialized characters (null characters).
 
                     if (c != '\0'){
-                        for (int i=len; i<n;i++){
+                        for (unsigned int i=len; i<n;i++){
                             temp[i]=c;
 		        }
                         // temp contains now all the characters of the initial string AND the character c as many times as necessary so that final string has length=n
@@ -175,18 +175,18 @@ void myString::resize(size_t n, char c){
 
                     }else{
 			//NOTE :: something's weird here. If the string is full of '\0', the length doesn't change... (number of char until first '\0')
-                        for (int i=len; i<n+1;i++){ // n+1 so there are (len-n) null characters to reach string's length=n, and +1 for the final null character
+                        for (unsigned int i=len; i<n+1;i++){ // n+1 so there are (len-n) null characters to reach string's length=n, and +1 for the final null character
                             temp[i]='\0';}
                         /*content = new char[n+1];
                         for (int i=0; i<n+1;i++){ // n+1 so null character is also in content
                             content[i]=temp[i];}*/
 
-			
+
 			delete []content;
 			content=temp;
                     }
         }
-        
+
         cap = n+1; // update cap
 
     }
@@ -198,10 +198,10 @@ void myString::resize2(size_t n, char c){
 	}
 	//Case : there is no need to resize the array
 	if (n<cap){
-		for (int i=std::min(len,n);i<n;++i){
+		for (unsigned int i=std::min(len,n);i<n;++i){
 			content[i]=c;
 		}
-		for (int i=n;i<cap;++i){
+		for (unsigned int i=n;i<cap;++i){
 			//Erases the end of the string (needed if it
 			//was longer than n)
 			content[i]='\0';
@@ -209,11 +209,11 @@ void myString::resize2(size_t n, char c){
 	} else {
 	//Case : the array needs to be resized
 		char *temp = new char[n+1];
-		for (int i=0;i<len;++i){
+		for (unsigned int i=0;i<len;++i){
 			temp[i]=content[i];
 		}
 		delete []content;
-		for (int i=len;i<n;++i){
+		for (unsigned int i=len;i<n;++i){
 			temp[i]=c;
 		}
 		content=temp;
@@ -234,7 +234,7 @@ myString& myString::operator= (const myString& str){
     content = new char[str.cap]; // on réserve un tableau de taille str.cap
     len = str.len;
     cap = str.cap;
-    for(int i=0;i<str.len+1;++i){
+    for(unsigned int i=0;i<str.len+1;++i){
         content[i] = str.content[i];
     }
 };
@@ -243,7 +243,7 @@ myString myString::operator+ (char rhs){
     // Returns a newly constructed string object with its value being the concatenation
     // of the characters in current object myString followed by those of rhs.
     char *newcontent = new char[len+1];
-	for(int i=0;i<len;i++){
+	for(unsigned int i=0;i<len;i++){
 		newcontent[i]=content[i];
 	}
 	newcontent[len]=rhs;
