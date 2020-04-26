@@ -10,19 +10,22 @@ myString::myString(){
 
 };
 
-myString::myString(const char* s){ //ATTENTION il n'y a pas de protection contre une string de + de 100 char !
-    int n;
+myString::myString(const char* s){
+    unsigned int n;
     n=0;
     while (s[n]!= '\0'){
         n=n+1;
     }
     content = new char[n+1];
     cap = n+1;
-    len = n; // longueur sans le caractère final
-    for (int i=0; i<n+1;++i){ // n+1 pour avoir le caractère '\0'
-    	content[i]=s[i];
+    len = n; // length is without couting null character
+    if (n > max_size()+1){
+			return; // don't create the string
+		}else{
+		    for (unsigned int i=0; i<n+1;++i){ // n+1 to have null character at the end of content
+            content[i]=s[i];
+		}
     };
-
 };
 
 const char* myString::c_str() const{
