@@ -160,6 +160,8 @@ TEST(GTestTests, operatorplusTest) {
     myString s1("coucou");
     myString s2 = s1 + '!';
     EXPECT_STREQ(s2.c_str(), "coucou!");
+    EXPECT_TRUE(s2.length() == 7);
+    EXPECT_TRUE(s2.capacity() == 8);
 };
 
 
