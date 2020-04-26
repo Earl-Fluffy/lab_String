@@ -17,6 +17,10 @@ TEST(GTestTests, cstringconstructorTest) {
     myString text("a character sequence");
     EXPECT_STREQ(text.c_str(), "a character sequence");
     EXPECT_TRUE(text.length()==20);
+    // if length is longer than maxsize
+    // comment testé que le string n'est pas créé ?
+    myString longtext("a character sequence a character sequence a character sequence a character sequence a character sequence");
+
 };
 
 // g-test of method empty
@@ -48,7 +52,6 @@ TEST(GTestTests, operatorequalaffectTest) {
     EXPECT_TRUE(text.capacity() == 25);
 
 };
-
 /* ce test donne : ABORTED CORE DUMP
 // g-test + (myString myString) operator
 TEST(GTestTests, operatorplusaddedTest) {
@@ -59,6 +62,7 @@ TEST(GTestTests, operatorplusaddedTest) {
     EXPECT_STREQ(res.c_str(),"abc-def");
 };
 */
+
 // g-test of method length
 TEST(GTestTests, lengthTest) {
     myString test;
