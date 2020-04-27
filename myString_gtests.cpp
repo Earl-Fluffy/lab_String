@@ -159,6 +159,12 @@ TEST(GTestTests, operatorplusTest) {
     EXPECT_STREQ(s2.c_str(), "coucou!");
     EXPECT_TRUE(s2.length() == 7);
     EXPECT_TRUE(s2.capacity() == 8);
+    myString s3("abc-");
+    myString s4("def-");
+    myString s5("ghi");
+    myString s6;
+    s6 = s3 + s4 + s5;
+    EXPECT_STREQ(s6.c_str(), "abc-def-ghi");
 };
 
 // g-test of operator =
@@ -180,6 +186,13 @@ TEST(GTestTests, operatorequalTest) {
     EXPECT_STREQ(s4.c_str(), "jb");
     EXPECT_TRUE(s4.length() == 2);
     EXPECT_TRUE(s4.capacity() == 3);
+
+    // multiple assignments
+    myString first("s1");
+    myString second("s2");
+    myString third("s3");
+    third = second = first;
+    EXPECT_STREQ(third.c_str(), "s1");
 
     // empty string
     myString empty("");
