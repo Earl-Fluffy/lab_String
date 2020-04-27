@@ -17,8 +17,6 @@ class myString{
 	size_t max_size(); //returns the maximum length that the string can reach
 	void resize(size_t n, char c='\0'); // Resizes the string to a length of n characters. If n<len  the string is shortened to his first n characters, if n>=len add to the string the character c (n-len) times.
 
-	void resize2(size_t n, char c='\0');
-
 	myString& operator= (const myString& str); //copy the given string
 	myString operator+ (char rhs); //add the given char at the end of the string's array
 

@@ -97,7 +97,6 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s1.length() == 3);
 
     EXPECT_TRUE(s1.capacity() == 4);
-    //this line is not true with resize2
 
 
     // n > len and c = 'a'
@@ -119,7 +118,6 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s3.c_str()[5] == '\0');
     EXPECT_TRUE(s3.c_str()[8] == '\0');
     EXPECT_TRUE(s3.length() == 5);
-    //this line is not true with resize2
     EXPECT_TRUE(s3.capacity() == 11);
 
     // n = len and c = '\0'
@@ -146,7 +144,6 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s6.c_str()[0] == '\0');
     EXPECT_TRUE(s6.length() == 0);
     EXPECT_TRUE(s6.capacity() == 1);
-    //this line is not true with resize2
 
 };
 

@@ -180,42 +180,6 @@ void myString::resize(size_t n, char c){
     }
 };
 
-void myString::resize2(size_t n, char c){
-	if (n>max_size()){
-		return;
-	}
-	//Case : there is no need to resize the array
-	if (n<cap){
-		for (unsigned int i=std::min(len,n);i<n;++i){
-			content[i]=c;
-		}
-		for (unsigned int i=n;i<cap;++i){
-			//Erases the end of the string (needed if it
-			//was longer than n)
-			content[i]='\0';
-		}
-	} else {
-	//Case : the array needs to be resized
-		char *temp = new char[n+1];
-		for (unsigned int i=0;i<len;++i){
-			temp[i]=content[i];
-		}
-		delete []content;
-		for (unsigned int i=len;i<n;++i){
-			temp[i]=c;
-		}
-		content=temp;
-		cap=n+1;
-	}
-	if (c=='\0'){
-		//By definition, length is the number of char before
-		// the first '\0'
-		len=std::min(n,len);
-	}else{
-		len=n;
-	}
-}
-
 myString& myString::operator= (const myString& str){
     // Assigns a new value to the string, replacing its current contents
     delete []content;
