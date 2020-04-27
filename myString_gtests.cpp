@@ -3,7 +3,6 @@
 #include <stdlib.h> // used for size_t
 #include <iostream>
 
-// A REVOIR : on teste des méthodes aussi donc je ne sais pas si on peut tester le constructeur comme ça
 // g-test of default constructor
 TEST(GTestTests, defaultconstructorTest) {
     myString test;
@@ -52,7 +51,7 @@ TEST(GTestTests, operatorequalaffectTest) {
     EXPECT_TRUE(text.capacity() == 25);
 
 };
-// ce test donne : ABORTED CORE DUMP
+
 // g-test + (myString myString) operator
 TEST(GTestTests, operatorplusaddedTest) {
     myString left("abc-");
@@ -89,15 +88,11 @@ TEST(GTestTests, resizeTest) {
     // n < len and c = ' '
     myString s1("julie");
     size_t n = 3;
-
     s1.resize(n,' ');
     EXPECT_STREQ(s1.c_str(), "jul");
     EXPECT_TRUE(s1.c_str()[3] == '\0');
-
     EXPECT_TRUE(s1.length() == 3);
-
     EXPECT_TRUE(s1.capacity() == 4);
-
 
     // n > len and c = 'a'
     myString s2("julie");
@@ -107,13 +102,10 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s2.length() == 10);
     EXPECT_TRUE(s2.capacity() == 11);
 
-
-
     // n > len and c = '\0'
     myString s3("julie");
     size_t n3 = 10;
     s3.resize(n3,'\0');
-
     EXPECT_STREQ(s3.c_str(), "julie");
     EXPECT_TRUE(s3.c_str()[5] == '\0');
     EXPECT_TRUE(s3.c_str()[8] == '\0');
@@ -145,6 +137,19 @@ TEST(GTestTests, resizeTest) {
     EXPECT_TRUE(s6.length() == 0);
     EXPECT_TRUE(s6.capacity() == 1);
 
+    // test the default character c
+    myString s7("default");
+    size_t n7 = 10;
+    EXPECT_TRUE(s7.length() == 7);
+    EXPECT_TRUE(s7.capacity() == 8);
+    s7.resize(n7);
+    EXPECT_TRUE(s7.length() == 7);
+    EXPECT_TRUE(s7.capacity() == 11);
+    myString s8("default");
+    size_t n8 = 2;
+    s8.resize(n8);
+    EXPECT_TRUE(s8.length() == 2);
+    EXPECT_TRUE(s8.capacity() == 3);
 };
 
 // g-test operator + which add the given char at the end of the string's array
@@ -156,7 +161,7 @@ TEST(GTestTests, operatorplusTest) {
     EXPECT_TRUE(s2.capacity() == 8);
 };
 
-
+// g-test of operator =
 TEST(GTestTests, operatorequalTest) {
     // right string longer than left string
     myString s1("jb");
