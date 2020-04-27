@@ -70,7 +70,7 @@ void myString::reserve(size_t n){
 	}
 };
 
-void myString::operator= (const char* s){
+myString& myString::operator= (const char* s){
 	delete []content;
 	//Deleting the previous string
 	int n=0;
@@ -85,10 +85,11 @@ void myString::operator= (const char* s){
 	//Copying the given string in the new array
 	for (int i=0; i<n+1;++i){
 		content[i]=s[i];
-	};
+	}
+        return *this;
 };
 
-myString myString::operator+(myString added){
+myString myString::operator+(const myString& added){
 	//Creating the array used as template by the new string
 	char *newcontent = new char[len+added.length()+1];
 	//Copying the content of the first string
@@ -105,7 +106,7 @@ myString myString::operator+(myString added){
 	return result;
  }
 
- size_t myString::length(){
+ size_t myString::length()const{
     // Returns the length of the myString, in terms of bytes.
     return len;
 };
@@ -224,6 +225,7 @@ myString& myString::operator= (const myString& str){
     for(unsigned int i=0;i<str.len+1;++i){
         content[i] = str.content[i];
     }
+    return *this;
 };
 
 myString myString::operator+ (char rhs){

@@ -10,10 +10,10 @@ class myString{
 	size_t capacity(); //returns cap
 	bool empty(); //returns true if the string stored is the emty string
 	void reserve(size_t n); //If n is greater than the actual capacity, increase the capacity of the string's array to n
-	void operator= (const char* s); //copy the content of the given C style string into the string's array
-	myString operator+( myString added); //Create a new string with the content of the 2 given strings
+	myString& operator= (const char* s); //copy the content of the given C style string into the string's array
+	myString operator+(const myString& added);; //Create a new string with the content of the 2 given strings
 
-        size_t length(); //returns len
+        size_t length()const; //returns len
 	size_t max_size(); //returns the maximum length that the string can reach
 	void resize(size_t n, char c='\0'); // Resizes the string to a length of n characters. If n<len  the string is shortened to his first n characters, if n>=len add to the string the character c (n-len) times.
 
